@@ -1,0 +1,20 @@
+{
+  "name": "letsnode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "daily-update":"git pull"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ags4436/ProjectNode.git"
+  },
+  "author": "ags",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ags4436/ProjectNode/issues"
+  },
+  "homepage": "https://github.com/ags4436/ProjectNode#readme"
+}
