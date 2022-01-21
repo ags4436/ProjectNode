@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "daily-update":"git pull"
+    "daily-update": "git pull"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/ags4436/ProjectNode/issues"
   },
-  "homepage": "https://github.com/ags4436/ProjectNode#readme"
+  "homepage": "https://github.com/ags4436/ProjectNode#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
 }
