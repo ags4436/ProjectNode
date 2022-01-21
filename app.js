@@ -1,9 +1,11 @@
 const express=require('express');
+const path=require('path');
 const app=express();
 
+app.use(express.static("./public"));
+
 app.get("/",(req,res)=>{
-    res.setHeader('content-type','text/html')
-    res.status(200).send("<h1>Home Page</h1>");
+   res.sendFile(path.resolve(__dirname,'./navbar-app/index.html'))
 })
 
 app.get("/about",(req,res)=>{
@@ -11,7 +13,7 @@ app.get("/about",(req,res)=>{
 })
 
 app.all("*",(req,res)=>{
-    res.status(400).send("404 :)")
+    res.status(404).send("404 :)")
 })
 
 
