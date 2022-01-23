@@ -11,7 +11,6 @@ let validateKey=(async (req,res,next)=>{
     let re = new RegExp('^[A-Z0-9]{5}(-[A-Z0-9]{5})(-[A-Z]{4}[0-9])(-[A-Z0-9]{5})(-[0-9]{1,5})$');
     let result = re.exec(key);
     if(result!==null){
-        console.log(result)
         const { stdout, stderr } = await exec("python v.py "+key);
         if(!stdout.includes("Entered key is valid!")){
             return res.send("Invalid Key!<br><a href='/'>Try Again<a/>")
