@@ -1,31 +1,17 @@
 const express=require('express');
 const path=require('path');
 var bodyParser = require('body-parser');
-const {products}=require("./data");
-const { exec } = require("child_process");
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 const app=express();
 
-
-let validateKey=((req,res,next)=>{
+let validateKey=(async (req,res,next)=>{
     const key=req.body.key
-    let verify="";
-    exec("python v.py "+key, (error, stdout, stderr) => {
-        if (error) {
-            console.log(`error: ${error.message}`);
-            return;
-        }
-        if (stderr) {
-            console.log(`stderr: ${stderr}`);
-            return;
-        }
-        console.log(stdout);
-    });
-    console.log(verify);
-    if(verify!="Entered key is valid!"){
-    return res.send("Invalid Key!")
+    const { stdout, stderr } = await exec("python v.py "+key);
+    if(!stdout.includes("Entered key is valid!")){
+        console.log('invalid')
+        return res.send("Invalid Key!<br><a href='/'>Try Again<a/>")
     }
-
-    console.log("Success")
     next()
 })
 
@@ -35,11 +21,7 @@ app.use(express.static("./public"));
 
  app.post("/submit",validateKey,(req,res)=>{
     console.log(req.body.key)
-    res.send("Checking..")
-})
-
-app.get("/about",(req,res)=>{
-    res.status(200).send("about Page");
+    res.send("Valid Key!")
 })
 
 app.all("*",(req,res)=>{
